@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script>
+        function makeBet() {
+
+            fetch("http://localhost:8080/make_bet", {
+                "method" : "POST",
+                "type" : "SINGLE",
+                "user" : "user",
+                "start" : "12"
+            }).then(() => alert("bet registered"));
+        }
+    </script>
 <style>
 table, th, td {
   border: 1px solid black;

@@ -92,16 +92,14 @@ public class Roulette {
         return 0;
     }
 
-    public void SetBet(String user, Integet bet, String type, Integer number) {
+    public void SetBet(String user, Integer bet, String type, Integer number) {
         bets.put(user, bet);
         numbers.put(user, ConvertBet(type, number));
         coefs.put(user, GetCoef(user));
     }
 
     public void PostGame(Integer win_num) {
-        Iterator<String> itr = coefs.keySet().iterator();
-        while (itr.hasNext()) {
-            String user = itr.next();
+        for (String user : coefs.keySet()) {
             if (numbers.get(user).contains(win_num)) {
                 balances.replace(user, balances.get(user) + coefs.get(user) * bets.get(user));
             } else {
