@@ -1,3 +1,5 @@
+package com.example.aboba.libs;
+
 import java.util.*;
 import java.util.stream.IntStream;
 
