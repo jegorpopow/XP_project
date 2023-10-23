@@ -1,0 +1,1 @@
+# European-style roulette prototype, HSE SE course project
