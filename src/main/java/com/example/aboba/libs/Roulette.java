@@ -92,8 +92,16 @@ public class Roulette {
         return 0;
     }
 
+    public void AddMoneyToBalance(String user, Integer money) {
+        balances.replace(user, balances.get(user) + money);
+    }
+
     public void SetBet(String user, Integer bet, String type, Integer number) {
-        bets.put(user, bet);
+        int to_bet = bet;
+        if (to_bet > balances.get(user)) {
+            to_bet = balances.get(user);
+        }
+        bets.put(user, to_bet);
         numbers.put(user, ConvertBet(type, number));
         coefs.put(user, GetCoef(user));
     }
