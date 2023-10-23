@@ -90,7 +90,15 @@ public class Roulette {
         return 0;
     }
 
+    public void AddMoneyToBalance(String user, Integet money) {
+        balances.replace(user, balances.get(user) + money);
+    }
+
     public void SetBet(String user, Integet bet, String type, Integer number) {
+        int to_bet = bet;
+        if (to_bet > balances.get(user)) {
+            to_bet = balances.get(user);
+        }
         bets.put(user, bet);
         numbers.put(user, ConvertBet(type, number));
         coefs.put(user, GetCoef(user));
