@@ -97,6 +97,14 @@ public class Roulette {
     }
 
     public void PostGame(Integer win_num) {
-        
+        Iterator<String> itr = coefs.keySet().iterator();
+        while (itr.hasNext()) {
+            String user = itr.next();
+            if (numbers.get(user).contains(win_num)) {
+                balances.replace(user, balances.get(user) + coefs.get(user) * bets.get(user));
+            } else {
+                balances.replace(user, balances.get(user) - bets.get(user));
+            }
+        }
     }
 }
