@@ -4,9 +4,10 @@ import java.util.stream.IntStream;
 public class Roulette {
     private Random rand = new Random();
     private int MAX_ITER = 1000;
-    private Map<String,List<Integer>> bets = new HashMap<>();
+    private Map<String,List<Integer>> numbers = new HashMap<>();
     private Map<String,Integer> coefs = new HashMap<>();
     private Map<String,Integer> balances = new HashMap<>();
+    private Map<String,Integer> bets = new HashMap<>();
     private String colors[] = new String[37];
     {
         colors[0]= "GREEN";
@@ -69,28 +70,33 @@ public class Roulette {
     }
 
     private Integer GetCoef(String user) {
-        if (bets.get(user).size() == 18) {
+        if (numbers.get(user).size() == 18) {
             return 1;
-        } else if (bets.get(user).size() == 12) {
+        } else if (numbers.get(user).size() == 12) {
             return 2;
-        } else if (bets.get(user).size() == 6) {
+        } else if (numbers.get(user).size() == 6) {
             return 5;
-        } else if (bets.get(user).size() == 1) {
+        } else if (numbers.get(user).size() == 1) {
             return 35;
-        } else if (bets.get(user).size() == 2) {
+        } else if (numbers.get(user).size() == 2) {
             return 17;
-        } else if (bets.get(user).size() == 3) {
+        } else if (numbers.get(user).size() == 3) {
             return 11;
-        } else if (bets.get(user).size() == 4) {
+        } else if (numbers.get(user).size() == 4) {
             return 8;
-        } else if (bets.get(user).size() == 5) {
+        } else if (numbers.get(user).size() == 5) {
             return 6;
         }
         return 0;
     }
 
-    public void SetBet(String user, String type, Integer number) {
-        bets.put(user, ConvertBet(type, number));
+    public void SetBet(String user, Integet bet, String type, Integer number) {
+        bets.put(user, bet);
+        numbers.put(user, ConvertBet(type, number));
         coefs.put(user, GetCoef(user));
+    }
+
+    public void PostGame(Integer win_num) {
+        
     }
 }
