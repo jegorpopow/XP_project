@@ -23,6 +23,10 @@ public class Roulette {
         }
     }
 
+    public int getBalance(String user) {
+        return balances.get(user);
+    }
+
     public int GetNumber() {
         int iter = 0;
         int num = rand.nextInt(MAX_ITER);
@@ -93,7 +97,7 @@ public class Roulette {
     }
 
     public void AddMoneyToBalance(String user, Integer money) {
-        balances.replace(user, balances.get(user) + money);
+        balances.put(user, balances.getOrDefault(user, 0) + money);
     }
 
     public void SetBet(String user, Integer bet, String type, Integer number) {
