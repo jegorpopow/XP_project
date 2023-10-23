@@ -68,11 +68,29 @@ public class Roulette {
         return arr;
     }
 
-    private List<Integer> GetCoef(String type, Integer num) {
-        return new ArrayList<>();
+    private Integer GetCoef(String user) {
+        if (bets.get(user).size() == 18) {
+            return 1;
+        } else if (bets.get(user).size() == 12) {
+            return 2;
+        } else if (bets.get(user).size() == 6) {
+            return 5;
+        } else if (bets.get(user).size() == 1) {
+            return 35;
+        } else if (bets.get(user).size() == 2) {
+            return 17;
+        } else if (bets.get(user).size() == 3) {
+            return 11;
+        } else if (bets.get(user).size() == 4) {
+            return 8;
+        } else if (bets.get(user).size() == 5) {
+            return 6;
+        }
+        return 0;
     }
 
     public void SetBet(String user, String type, Integer number) {
         bets.put(user, ConvertBet(type, number));
+        coefs.put(user, GetCoef(user));
     }
 }
