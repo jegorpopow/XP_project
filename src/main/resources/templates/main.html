@@ -2,14 +2,45 @@
 <html>
 <head>
     <script>
-        function makeBet() {
+        let user = 'user'
+        let money = 100;
+        let debt = 0;
+        function  updateMoney(k) {
+            money -= k;
+            document.getElementById("moneyAmount").innerText = "Your money: " + money;
 
-            fetch("http://localhost:8080/make_bet", {
-                "method" : "POST",
-                "type" : "SINGLE",
-                "user" : "user",
-                "start" : "12"
+        }
+        function  updateDebt() {
+            if (money < 0) {
+                debt += money;
+                money = 0;
+            }
+            document.getElementById("moneyAmount").innerText = "Your money: " + money;
+            document.getElementById("debtAmount").innerText = "Your debt: " + (-debt);
+
+        }
+        function makeBet(type, amount, user) {
+
+            fetch(`http://localhost:8080/make_bet?type=${1}&`, {
+                "method" : "POST"
             }).then(() => alert("bet registered"));
+        }
+
+        function betPrompt(type) {
+            let bet = prompt("Please enter your bet", "50");
+
+            if (bet != null) {
+                if (bet > money) {
+                    alert("It is more than you have");
+                }
+                if (money + debt - bet < -1000)
+                    alert("We won't give you money");
+                else {
+                    updateMoney(bet);
+                    updateDebt();
+                    makeBet(type, bet, user)
+                }
+            }
         }
     </script>
 <style>
@@ -19,6 +50,7 @@ table, th, td {
   background-color: green;
   color: gold
 }
+
 
 .center {
   margin: auto;
@@ -35,6 +67,17 @@ table, th, td {
 </style>
 </head>
 <body>
+<span id="moneyAmount"> Your money: 100</span>
+<span id="debtAmount"> Your debt: 0</span>
+
+<script>
+    // Пример обновления значения денег игрока (может быть вызвано из вашей игровой логики)
+    function updatePlayerMoney(newMoney) {
+        document.getElementById("money").value = newMoney;
+    }
+
+    updatePlayerMoney(1000);
+</script>
 
 <center><h2 >French Roulette</h2></center>
 <table class="center">
@@ -64,11 +107,11 @@ table, th, td {
         <td class="red">12</td>
     </tr>
     <tr>
-        <td  class="side" rowspan="4">PASSE</td>
+        <td  class="side" rowspan="4" onclick="passePrompt()";>PASSE</td>
         <td>13</td>
         <td class="red">14</td>
         <td>15</td>
-        <td  class="side" rowspan="4">PASSE</td>
+        <td  class="side" rowspan="4" onclick="passePrompt()">PASSE</td>
     </tr>
     <tr>
         <td class="red">16</td>

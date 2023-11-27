@@ -2,7 +2,7 @@ package com.example.aboba.libs;
 
 import java.util.*;
 import java.util.stream.IntStream;
-import com.example.aboba.*;
+import com.example.aboba.domain.*;
 
 public class Roulette {
     private Random rand = new Random();
@@ -25,8 +25,8 @@ public class Roulette {
     }
 
     public void AddUser(String username) {
-        if (!users.containsKey()) {
-            users.put(username, User(username));
+        if (!users.containsKey(username)) {
+            users.put(username, new User(username));
         }
     }
 
@@ -41,7 +41,8 @@ public class Roulette {
     }
 
     public void PostGame(Integer win_num) {
-        for (User user : users.valueSet()) {
+        for (var entry : users.entrySet()) {
+            User user = entry.getValue();
             user.ComputePostGame(win_num);
         }
     }

@@ -12,8 +12,9 @@ class RouletteTest {
     void canAddBet() {
         roulette.AddMoneyToBalance("user1", 1000);
         roulette.AddMoneyToBalance("user2", 1000);
-        roulette.SetBet("user1", 500, "SINGLE", 7);
-        roulette.SetBet("user2", 1500, "EVEN", 7);
+        roulette.AddBet("user1", 500, "SINGLE", 7);
+        roulette.AddBet("user2", 1500, "EVEN", 7);
+
         int num = 7;
         roulette.PostGame(num);
         Assertions.assertEquals(500 * 35 + 1000, roulette.getBalance("user1"));

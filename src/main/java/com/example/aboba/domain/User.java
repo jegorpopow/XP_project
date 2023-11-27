@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 public class User {
     private List<Bet> _bets = new ArrayList<>();
     private Integer _balance = 0;
-    private Integer _name = "";
+    private String _name = "";
     
     public User(String name) {
         _name = name;
@@ -18,7 +18,7 @@ public class User {
             to_bet = _balance;
         }
         _balance -= to_bet;
-        _bets.add(Bet(type, number, to_bet));
+        _bets.add(new Bet(type, number, to_bet));
     }
 
     public void AddMoneyToBalance(Integer money) {
