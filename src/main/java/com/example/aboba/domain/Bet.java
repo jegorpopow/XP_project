@@ -47,23 +47,25 @@ public class Bet {
     }
 
     private Integer InitCoef() {
-        if (_fields.size() == 18) {
-            return 1;
-        } else if (_fields.size() == 12) {
-            return 2;
-        } else if (_fields.size() == 6) {
-            return 5;
-        } else if (_fields.size() == 1) {
-            return 35;
-        } else if (_fields.size() == 2) {
-            return 17;
-        } else if (_fields.size() == 3) {
-            return 11;
-        } else if (_fields.size() == 4) {
-            return 8;
-        } else if (_fields.size() == 5) {
-            return 6;
+        switch (_fields.size()) {
+            case (18):
+                return 1;
+            case (12):
+                return 2;
+            case (6):
+                return 5;
+            case (5):
+                return 6;
+            case (4):
+                return 8;
+            case (3):
+                return 11;
+            case (2):
+                return 17;
+            case (1):
+                return 35;
+            default:
+                return 0;
         }
-        return 0;
     }
 }
