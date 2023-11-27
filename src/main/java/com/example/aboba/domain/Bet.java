@@ -24,37 +24,37 @@ public class Bet {
             _fields = IntStream.range(0, 37).filter(i -> colors[i].equals(type)).boxed().toList();;
         } else if (type.equals("SINGLE")) {
             if (num > 36) {
-                throw Exception("Wrong request");
+                throw new Exception("Wrong request");
             }
             _fields = Collections.singletonList(num);
         } else if (Objects.equals(type, "SPLIT HORIZONTAL")) {
             if (num % 3 == 0) {
-                throw Exception("Wrong request");
+                throw new Exception("Wrong request");
             }
             _fields = Arrays.asList(num, num + 1);
         } else if (type.equals("SPLIT VERTICAL")) {
             if (num == 0 || num > 33) {
-                throw Exception("Wrong request");
+                throw new Exception("Wrong request");
             }
             _fields = Arrays.asList(num, num + 3);
         } else if (type.equals("STREET")) {
             if (num % 3 != 1 || num > 34) {
-                throw Exception("Wrong request");
+                throw new Exception("Wrong request");
             }
             _fields = Arrays.asList(num, num + 1, num + 2);
         } else if (type.equals("SQUARE")) {
             if (num % 3 == 0|| num > 34) {
-                throw Exception("Wrong request");
+                throw new Exception("Wrong request");
             }
             _fields = Arrays.asList(num, num + 1, num + 3, num + 4);
         } else if (type.equals("DOUBLE STREET")) {
             if (num % 3 != 1|| num > 31) {
-                throw Exception("Wrong request");
+                throw new Exception("Wrong request");
             }
             _fields = Arrays.asList(num, num + 1, num + 2, num + 3, num + 4, num + 5);
         } else if (type.equals("BUSKET")) {
             if (num != 1 && num != 2) {
-                throw Exception("Wrong request");
+                throw new Exception("Wrong request");
             }
             _fields = Arrays.asList(0, num, num + 1);
         } else if (type.equals("FIRST FOUR")) {
@@ -65,7 +65,7 @@ public class Bet {
             } else if (num == 2) {
                 _fields = IntStream.range(19, 37).boxed().toList();;
             } else {
-                throw Exception("Wrong request");
+                throw new Exception("Wrong request");
             }
         } else if (type.equals("EVEN")) {
             _fields = IntStream.range(1, 37).filter(i -> i % 2 == 0).boxed().toList();
@@ -73,12 +73,12 @@ public class Bet {
             _fields = IntStream.range(1, 37).filter(i -> i % 2 == 1).boxed().toList();;
         } else if (type.equals("DOZEN")) {
             if (num != 1 && num != 13 && num != 25) {
-                throw Exception("Wrong request");
+                throw new Exception("Wrong request");
             }
             _fields = IntStream.range(num, num + 12).boxed().toList();;
         } else if (type.equals("COLUMN")) {
             if (num > 3 || num < 1) {
-                throw Exception("Wrong request");
+                throw new Exception("Wrong request");
             }
             _fields = IntStream.range(1, 37).filter(i -> i % 3 == num).boxed().toList();;
         }
