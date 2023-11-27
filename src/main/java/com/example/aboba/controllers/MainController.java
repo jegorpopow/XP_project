@@ -20,8 +20,8 @@ public class MainController {
     public String makeBet(Model model, HttpServletRequest  request) {
         String user  =request.getParameter("user");
         String type  =request.getParameter("type");
-        int start = Integer.parseInt(request.getParameter("start"));
-        System.out.println(user + type + start);
+        //int start = Integer.parseInt(request.getParameter("start"));
+        System.out.println(user + type);
         return "main";
     }
 

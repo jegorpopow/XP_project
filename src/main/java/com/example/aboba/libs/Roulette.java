@@ -35,7 +35,7 @@ public class Roulette {
         users.get(username).AddMoneyToBalance(money);
     }
 
-    public void AddBet(String username, Integer bet, String type, Integer number) {
+    public void AddBet(String username, Integer bet, String type, Integer number) throws Exception{
         AddUser(username);
         users.get(username).AddBet(bet, type, number);
     }

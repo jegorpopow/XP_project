@@ -12,7 +12,7 @@ public class User {
         _name = name;
     }
 
-    public void AddBet(Integer bet, String type, Integer number) {
+    public void AddBet(Integer bet, String type, Integer number) throws Exception{
         int to_bet = bet;
         if (to_bet > _balance) {
             to_bet = _balance;

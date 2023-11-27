@@ -19,14 +19,14 @@
             document.getElementById("debtAmount").innerText = "Your debt: " + (-debt);
 
         }
-        function makeBet(type, amount, user) {
+        function makeBet(type, start, amount) {
 
-            fetch(`http://localhost:8080/make_bet?type=${1}&`, {
+            fetch(`http://localhost:8080/make_bet?type=${type}&user=${user}`, {
                 "method" : "POST"
             }).then(() => alert("bet registered"));
         }
 
-        function betPrompt(type) {
+        function betPrompt(type, start) {
             let bet = prompt("Please enter your bet", "50");
 
             if (bet != null) {
@@ -38,7 +38,8 @@
                 else {
                     updateMoney(bet);
                     updateDebt();
-                    makeBet(type, bet, user)
+                    makeBet(type, start, bet)
+
                 }
             }
         }
@@ -86,47 +87,47 @@ table, th, td {
     </tr>
     <tr>
         <td  class="side" rowspan="4">PASSE</td>
-        <td class="red">1</td>
-        <td>2</td>
-        <td class="red">3</td>
-        <td  class="side" rowspan="4">MANQUE</td>
+        <td class="red" onclick="betPrompt('SINGLE', 1)">1</td>
+        <td onclick="betPrompt('SINGLE', 2)">2</td>
+        <td class="red" onclick="betPrompt('SINGLE', 3)">3</td>
+        <td  class="side" rowspan="4" onclick="betPrompt('SINGLE', 1)">MANQUE</td>
     </tr>
     <tr>
-        <td>4</td>
-        <td class="red">5</td>
-        <td>6</td>
+        <td onclick="betPrompt('SINGLE', 4)">4</td>
+        <td class="red" onclick="betPrompt('SINGLE', 5)">5</td>
+        <td onclick="betPrompt('SINGLE', 6)">6</td>
     </tr>
     <tr>
-        <td class="red">7</td>
-        <td>8</td>
-        <td class="red">9</td>
+        <td class="red" onclick="betPrompt('SINGLE', 7)">7</td>
+        <td onclick="betPrompt('SINGLE', 8)">8</td>
+        <td class="red" onclick="betPrompt('SINGLE', 9)">9</td>
     </tr>
     <tr>
-        <td>10</td>
-        <td>11</td>
-        <td class="red">12</td>
+        <td onclick="betPrompt('SINGLE', 10)">10</td>
+        <td onclick="betPrompt('SINGLE', 1)">11</td>
+        <td class="red" onclick="betPrompt('SINGLE', 1)">12</td>
     </tr>
     <tr>
-        <td  class="side" rowspan="4" onclick="passePrompt()";>PASSE</td>
-        <td>13</td>
-        <td class="red">14</td>
-        <td>15</td>
-        <td  class="side" rowspan="4" onclick="passePrompt()">PASSE</td>
+        <td  class="side" rowspan="4" onclick="betPrompt()">PASSE</td>
+        <td onclick="betPrompt('SINGLE', 1)">13</td>
+        <td class="red" onclick="betPrompt('SINGLE', 1)">14</td>
+        <td onclick="betPrompt('SINGLE', 1)">15</td>
+        <td  class="side" rowspan="4" onclick="betPrompt()">PASSE</td>
     </tr>
     <tr>
-        <td class="red">16</td>
-        <td>17</td>
-        <td class="red">18</td>
+        <td class="red" onclick="betPrompt('SINGLE', 1)">16</td>
+        <td onclick="betPrompt('SINGLE', 1)">17</td>
+        <td class="red" onclick="betPrompt('SINGLE', 1)">18</td>
     </tr>
     <tr>
-        <td class="red">19</td>
-        <td>20</td>
-        <td class="red">21</td>
+        <td class="red" onclick="betPrompt('SINGLE', 1)">19</td>
+        <td onclick="betPrompt('SINGLE', 1)">20</td>
+        <td class="red" onclick="betPrompt('SINGLE', 1)">21</td>
     </tr>
     <tr>
-        <td>22</td>
-        <td class="red">23</td>
-        <td>24</td>
+        <td onclick="betPrompt('SINGLE', 1)">22</td>
+        <td class="red" onclick="betPrompt('SINGLE', 1)">23</td>
+        <td onclick="betPrompt('SINGLE', 1)">24</td>
     </tr>
     <tr>
         <td  class="side" rowspan="4">BLACK</td>

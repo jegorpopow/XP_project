@@ -9,7 +9,7 @@ class RouletteTest {
     Roulette roulette = new Roulette();
 
     @Test
-    void canAddBet() {
+    void canAddBet() throws Exception {
         roulette.AddMoneyToBalance("user1", 1000);
         roulette.AddMoneyToBalance("user2", 1000);
         roulette.AddBet("user1", 500, "SINGLE", 7);

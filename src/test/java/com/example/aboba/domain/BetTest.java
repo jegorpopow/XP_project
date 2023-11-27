@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class RouletteTest {
+class BetTest {
     @Test
-    void singleBet() {
+    void singleBet() throws Exception {
         Bet bet1 = new Bet("SINGLE", 15, 1000);
         Bet bet2 = new Bet("SINGLE", 30, 1000);
         Assertions.assertThrows(Exception.class, () -> new Bet("SINGLE", 100, 0));
@@ -16,7 +16,7 @@ class RouletteTest {
     }
 
     @Test
-    void colorBet() {
+    void colorBet() throws Exception{
         Bet bet1 = new Bet("RED", 0, 1000);
         Bet bet2 = new Bet("BLACK", 0, 1000);
         Bet bet3 = new Bet("GREEN", 0, 1000);       

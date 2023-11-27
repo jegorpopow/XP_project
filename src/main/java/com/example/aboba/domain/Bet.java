@@ -19,7 +19,7 @@ public class Bet {
         }
     }
     
-    public Bet(String type, Integer num, Integer bet) throw Exception {
+    public Bet(String type, Integer num, Integer bet) throws Exception {
         if (type.equals("RED") || type.equals("BLACK") || type.equals("GREEN")) {
             _fields = IntStream.range(0, 37).filter(i -> colors[i].equals(type)).boxed().toList();;
         } else if (type.equals("SINGLE")) {
@@ -54,7 +54,7 @@ public class Bet {
             _fields = IntStream.range(1, 37).filter(i -> i % 3 == num).boxed().toList();;
         }
         if (_fields.get(_fields.size() - 1) > 36) {
-            throw Exception("Wrong request");
+            throw new Exception("wrong request");
         }
         _delta_win = InitCoef() * bet;
     }
