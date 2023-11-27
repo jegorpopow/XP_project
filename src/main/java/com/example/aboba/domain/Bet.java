@@ -5,7 +5,7 @@ import java.util.stream.IntStream;
 
 public class Bet {
     private List<Integer> _fields = new ArrayList<>();
-    private Integer _delta_win;
+    private Integer _delta_win = 0;
     
     public Bet(String type, Integer num, Integer bet) {
         if (type.equals("RED") || type.equals("BLACK") || type.equals("GREEN")) {
@@ -41,7 +41,7 @@ public class Bet {
         } else if (type.equals("COLUMN")) {
             _fields = IntStream.range(1, 37).filter(i -> i % 3 == num).boxed().toList();;
         }
-        _money_if_win = InitCoef() * bet;
+        _delta_win = InitCoef() * bet;
     }
 
     public Integer GetWinMoney(Integer win_num) {
