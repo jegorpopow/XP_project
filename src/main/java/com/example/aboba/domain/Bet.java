@@ -19,7 +19,7 @@ public class Bet {
         }
     }
     
-    public Bet(String type, Integer num, Integer bet) {
+    public Bet(String type, Integer num, Integer bet) throw Exception {
         if (type.equals("RED") || type.equals("BLACK") || type.equals("GREEN")) {
             _fields = IntStream.range(0, 37).filter(i -> colors[i].equals(type)).boxed().toList();;
         } else if (type.equals("SINGLE")) {
@@ -53,6 +53,9 @@ public class Bet {
         } else if (type.equals("COLUMN")) {
             _fields = IntStream.range(1, 37).filter(i -> i % 3 == num).boxed().toList();;
         }
+        if (_fields.get(_fields.size() - 1) > 36) {
+            throw Exception("Wrong request");
+        }
         _delta_win = InitCoef() * bet;
     }
 
@@ -67,21 +70,21 @@ public class Bet {
     private Integer InitCoef() {
         switch (_fields.size()) {
             case (18):
-                return 1;
-            case (12):
                 return 2;
+            case (12):
+                return 3;
             case (6):
-                return 5;
-            case (5):
                 return 6;
+            case (5):
+                return 7;
             case (4):
-                return 8;
+                return 9;
             case (3):
-                return 11;
+                return 12;
             case (2):
-                return 17;
+                return 18;
             case (1):
-                return 35;
+                return 36;
             default:
                 return 0;
         }
