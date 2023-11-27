@@ -6,9 +6,9 @@ import java.util.stream.IntStream;
 public class Bet {
     private List<Integer> _fields = new ArrayList<>();
     private String _user;
-    private Integer _coef;
+    private Integer _money_if_win;
     
-    public Bet(String type, Integer num, String user) {
+    public Bet(String type, Integer num, String user, Integer bet) {
         _user = user;
         if (type.equals("RED") || type.equals("BLACK") || type.equals("GREEN")) {
             _fields = IntStream.range(0, 37).filter(i -> colors[i].equals(type)).boxed().toList();;
@@ -43,7 +43,11 @@ public class Bet {
         } else if (type.equals("COLUMN")) {
             _fields = IntStream.range(1, 37).filter(i -> i % 3 == num).boxed().toList();;
         }
-        _coef = InitCoef();
+        _money_if_win = InitCoef() * bet;
+    }
+
+    public GetWinMoney() {
+        return _money_if_win;
     }
 
     private Integer InitCoef() {
