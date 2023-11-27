@@ -8,18 +8,6 @@ public class Roulette {
     private Random rand = new Random();
     private int MAX_ITER = 1000;
     private Map<String,User> users = new HashMap<>();
-    private String colors[] = new String[37];
-    {
-        colors[0]= "GREEN";
-        List<String> br = Arrays.asList("RED", "BLACK");
-        int idx = 0;
-        for (int i = 1; i < 37; i++) {
-            colors[i] = br.get(idx);
-            if (i != 10 && i != 18 && i != 28) {
-                idx = 1 - idx;
-            }
-        }
-    }
 
     public int getBalance(String username) {
         AddUser(username);
