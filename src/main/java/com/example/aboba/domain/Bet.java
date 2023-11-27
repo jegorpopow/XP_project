@@ -6,6 +6,18 @@ import java.util.stream.IntStream;
 public class Bet {
     private List<Integer> _fields = new ArrayList<>();
     private Integer _delta_win = 0;
+    private String colors[] = new String[37];
+    {
+        colors[0]= "GREEN";
+        List<String> br = Arrays.asList("RED", "BLACK");
+        int idx = 0;
+        for (int i = 1; i < 37; i++) {
+            colors[i] = br.get(idx);
+            if (i != 10 && i != 18 && i != 28) {
+                idx = 1 - idx;
+            }
+        }
+    }
     
     public Bet(String type, Integer num, Integer bet) {
         if (type.equals("RED") || type.equals("BLACK") || type.equals("GREEN")) {
