@@ -2,14 +2,13 @@ package com.example.aboba.libs;
 
 import java.util.*;
 import java.util.stream.IntStream;
+import com.example.aboba.*;
 
 public class Roulette {
     private Random rand = new Random();
     private int MAX_ITER = 1000;
-    private Map<String,List<Integer>> numbers = new HashMap<>();
-    private Map<String,Integer> coefs = new HashMap<>();
+    private Map<String,List<Bet>> bets = new HashMap<>();
     private Map<String,Integer> balances = new HashMap<>();
-    private Map<String,Integer> bets = new HashMap<>();
     private String colors[] = new String[37];
     {
         colors[0]= "GREEN";
@@ -105,18 +104,17 @@ public class Roulette {
         if (to_bet > balances.get(user)) {
             to_bet = balances.get(user);
         }
-        bets.put(user, to_bet);
-        numbers.put(user, ConvertBet(type, number));
-        coefs.put(user, GetCoef(user));
+        balances.replace(user, balances.get(user) - to_bet);
+        bets.get(user).add(Bet(type, num, to_bet));
+
     }
 
     public void PostGame(Integer win_num) {
-        for (String user : coefs.keySet()) {
-            if (numbers.get(user).contains(win_num)) {
-                balances.replace(user, balances.get(user) + coefs.get(user) * bets.get(user));
-            } else {
-                balances.replace(user, balances.get(user) - bets.get(user));
+        for (String user : bets.keySet()) {
+            for (Bet bet : bets.get(user)) {
+                balances.replace(user, balances.get(user) + bet.GetWinMoney(win_num));
             }
         }
+        bets.clear();
     }
 }

@@ -5,11 +5,9 @@ import java.util.stream.IntStream;
 
 public class Bet {
     private List<Integer> _fields = new ArrayList<>();
-    private String _user;
-    private Integer _money_if_win;
+    private Integer _delta_win;
     
-    public Bet(String type, Integer num, String user, Integer bet) {
-        _user = user;
+    public Bet(String type, Integer num, Integer bet) {
         if (type.equals("RED") || type.equals("BLACK") || type.equals("GREEN")) {
             _fields = IntStream.range(0, 37).filter(i -> colors[i].equals(type)).boxed().toList();;
         } else if (type.equals("SINGLE")) {
@@ -46,8 +44,12 @@ public class Bet {
         _money_if_win = InitCoef() * bet;
     }
 
-    public GetWinMoney() {
-        return _money_if_win;
+    public Integer GetWinMoney(Integer win_num) {
+        if (_fields.contains(win_num)) {
+            return _delta_win;
+        } else {
+            return 0;
+        }
     }
 
     private Integer InitCoef() {
